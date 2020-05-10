@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+  <br>
+  <div class="mt-5 d-flex justify-content-between">
+    <h1 class="">Catalog</h1>
+    <a type="button" class="btn btn-outline-dark btn-lg mb-4" href="{% url 'product-add' %}">Add product</a>
+  </div>
+  <!-- Cards -->
+  <dev class="album">
+    <div class="container">
+      <div class="row" id="catalog">
+        {% for product in products %}
+          <div class="col-md-4 col-sm-6 p-0">
+            <div class="card mr-2 mb-4 p-0 shadow rounded border border-info" style="width: 14rem;">
+              <img src="static/img/300x200.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ product.title }}</h5>
+                <p class="card-text">{{ product.vendor }}</p>
+                <p class="card-text">Price: ${{ product.price }}</p>
+                <button type="button" class="btn btn-info">Bay</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div> 
+{% endblock content %}
