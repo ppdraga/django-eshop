@@ -25,6 +25,7 @@ class GoodItemDetailView(DetailView):
 class GoodItemCreateView(CreateView):
     model = GoodItem
     fields = ['title', 'vendor', 'price', 'unit_of_measure']
+    success_url = '/'
 
 class GoodItemUpdateView(UpdateView):
     model = GoodItem
