@@ -1,0 +1,10 @@
+version: '3'
+services:
+    rabbitmq:
+        image: 'rabbitmq'
+        environment:
+            - RABBITMQ_USERNAME=rabbitmq
+            - RABBITMQ_PASSWORD=rabbitmq
+        ports:
+            - '5672:5672'
+            - '15672:15672'
