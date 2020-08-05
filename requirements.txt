@@ -1,3 +1,5 @@
 Django==2.2
 django-crispy-forms==1.9.0
 celery==4.4.6
+sqlalchemy==1.0.14
+flower==0.9.5
