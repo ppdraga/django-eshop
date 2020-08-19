@@ -11,11 +11,12 @@ from django.views.generic import (
 
 from django.views.decorators.csrf import csrf_exempt
 from django.http import Http404
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, action
 from rest_framework.parsers import JSONParser
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status, mixins, generics
+from rest_framework.reverse import reverse
+from rest_framework import status, mixins, generics, viewsets
 
 from catalog.serializers import GoodItemSerializer
 from catalog.models import GoodItem
@@ -65,6 +66,13 @@ def add(request):
 
 
 # DRF Views
+
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'users': reverse('catalog:user-list', request=request, format=format),
+        'products': reverse('catalog:product-list', request=request, format=format)
+    })
 
 #######################
 # func-based drf views:
@@ -204,7 +212,10 @@ class ProductList(generics.ListCreateAPIView):
     queryset = GoodItem.objects.all()
     serializer_class = GoodItemSerializer
 
-
 class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = GoodItem.objects.all()
+    serializer_class = GoodItemSerializer
+
+class ProductViewSet(viewsets.ModelViewSet):
     queryset = GoodItem.objects.all()
     serializer_class = GoodItemSerializer
