@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from django.contrib.auth.models import User
 from rest_framework import routers
 
-from api.views import UserViewSet, GroupViewSet, GoodItemViewSet
+from api.views import UserViewSet, GroupViewSet, GoodItemViewSet, StatView
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
@@ -35,6 +35,7 @@ urlpatterns = [
     path('', include('catalog.urls', namespace='catalog')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('drf/', include(router.urls)),
+    path('stat/', StatView.as_view()),
 ]
 
 if settings.DEBUG:

@@ -4,3 +4,4 @@ __pycache__/
 *.cpython-37.pyc
 Pipfile*
 .vscode
+.idea
