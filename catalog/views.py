@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.template.loader import render_to_string
+from django.utils import translation
 from django.views.generic import (
     ListView,
     DetailView,
@@ -21,6 +22,12 @@ class GoodItemListView(ListView):
 
     def get_queryset(self):
         return GoodItem.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        print("xz")
+        translation.activate('ru')
+        # translation.activate('en-us')
+        return super(GoodItemListView, self).get(request, *args, **kwargs)
 
 class GoodItemDetailView(DetailView):
     model = GoodItem
